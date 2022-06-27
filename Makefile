@@ -1,4 +1,4 @@
-SRCS	= push_swap.c get_lst.c
+SRCS	= push_swap.c get_lst.c operations.c
 
 LIB		= ./libft/libft.a
 
@@ -26,7 +26,6 @@ clean:
 fclean:
 	rm -vf ${NAME} ${OBJS}
 	make -C ./libft fclean
-	make -C ./minilibx-linux clean
 
 re: fclean all
 
