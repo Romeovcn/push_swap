@@ -12,19 +12,19 @@ typedef struct stack_list
 	struct stack_list	*next;
 }						k_list;
 
-void					sa(k_list *stack_a);
-void					sb(k_list *stack_b);
-void					ss(k_list *stack_a, k_list *stack_b);
-void					pa(k_list **stack_a, k_list **stack_b);
-void					pb(k_list **stack_a, k_list **stack_b);
-void					ra(k_list **stack_a_ptr, k_list *stack_a);
-void					rb(k_list **stack_b_ptr, k_list *stack_b);
-void					rr(k_list **stack_a_ptr, k_list *stack_a,
-							k_list **stack_b_ptr, k_list *stack_b);
-void					rra(k_list **stack_a_ptr, k_list *stack_a);
-void					rrb(k_list **stack_a_ptr, k_list *stack_a);
-void					rrr(k_list **stack_a_ptr, k_list *stack_a,
-							k_list **stack_b_ptr, k_list *stack_b);
+void					sa(k_list *stack_a, int *count);
+// void					sb(k_list *stack_b);
+// void					ss(k_list *stack_a, k_list *stack_b);
+void					pa(k_list **stack_a, k_list **stack_b, int *count);
+void					pb(k_list **stack_a, k_list **stack_b, int *count);
+void					ra(k_list **stack_a_ptr, k_list *stack_a, int *count);
+void					rb(k_list **stack_b_ptr, k_list *stack_b, int *count);
+void					rr(k_list **stack_a_ptr, k_list **stack_b_ptr,
+							int *count);
+void					rra(k_list **stack_a_ptr, k_list *stack_a, int *count);
+void					rrb(k_list **stack_b_ptr, k_list *stack_b, int *count);
+void					rrr(k_list **stack_a_ptr, k_list **stack_b_ptr,
+							int *count);
 
 void					clear_list(k_list **stack_list, char **stack);
 

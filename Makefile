@@ -11,21 +11,21 @@ CC	= gcc
 CFLAGS	= -Wall -Werror -Wextra
 
 .c.o:
-	${CC} -c $< -o ${<:.c=.o}
+	@${CC} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-	make -C ./libft
-	$(CC) $(SRCS) $(LIB)
+	@make -C ./libft
+	@$(CC) $(SRCS) $(LIB)
 
 all:	${NAME}
 
 clean:
-	rm -f ${OBJS}
-	make -C ./libft clean
+	@rm -f ${OBJS}
+	@make -C ./libft clean
 
 fclean:
-	rm -vf ${NAME} ${OBJS}
-	make -C ./libft fclean
+	@rm -vf ${NAME} ${OBJS}
+	@make -C ./libft fclean
 
 re: fclean all
 
