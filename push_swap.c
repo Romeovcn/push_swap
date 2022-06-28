@@ -1,223 +1,171 @@
 #include "push_swap.h"
 
-k_list	*get_stack(char **stack)
+int check_is_reverse_better(k_list *stack, int nbr)
 {
-	k_list	*result;
-	int		i;
-	int		nbr;
-
-	i = 0;
-	result = NULL;
-	while (stack[i])
-	{
-		nbr = ft_atoi(stack[i]);
-		lstadd_back(&result, lstnew(nbr));
-		i++;
-	}
-	return (result);
-}
-
-void	print_list(k_list *stack)
-{
-	while (stack)
-	{
-		printf("%d ", stack->content);
-		stack = stack->next;
-	}
-	printf("\n");
-}
-
-int calculate_move_extract(k_list *stack, int nbr)
-{
-	k_list *head;
 	int position;
 	int size;
 
-	head = stack;
 	position = 0;
-	size = 0;
-
-	while (head)
-	{
-		size++;
-		head = head->next;
-	}
-	head = stack;
-	while (head && nbr != head->content)
+	size = get_stack_size(stack);
+	while (stack && stack->content != nbr)
 	{
 		position++;
-		head = head->next;
-	}
-	if ((size - position) < position)
-		return (size - position);
-	return position;
-}
-
-int find_first_smallest(k_list *stack, int nbr)
-{
-	int next_smallest;
-
-	next_smallest = nbr;
-	while (stack)
-	{
-		if (stack->content < nbr)
-		{
-			next_smallest = stack->content;
-			break;
-		}
 		stack = stack->next;
 	}
-	return next_smallest;
+	if ((size - position) < position)
+		return 1;
+	return 0; 	
 }
 
-int find_biggest(k_list *stack, int nbr)
+void extract(k_list **stack, int nbr, int *action_count)
+{
+	int move;
+
+	move = calculate_move_extract(*stack, nbr);
+	if (check_is_reverse_better(*stack, nbr))
+		while (move--)
+		{
+			rra(stack, *stack, action_count);
+			// printf("REVERSE\n");
+		}
+	else
+		while (move--)
+		{
+			ra(stack, *stack, action_count);
+			// printf("NOT REVERSE\n");
+		}
+}
+
+void insert_part_2(k_list **stack, int nbr, int move, int *action_count)
+{
+	if (check_is_reverse_better(*stack, nbr))
+	while (move--)
+		rrb(stack, *stack, action_count);
+	else
+		while (move--)
+			rb(stack, *stack, action_count);
+}
+
+void insert(k_list **stack, int nbr, int *action_count)
+{
+	int smallest;
+	int biggest;
+	int move;
+
+	smallest = find_first_smallest(*stack, nbr);
+	biggest = find_biggest(*stack, nbr);
+	if (smallest != nbr)
+	{
+		smallest = find_next_smallest(*stack, smallest, nbr);
+		move = get_move(*stack, smallest);
+		insert_part_2(stack, smallest, move, action_count);
+	}
+	else
+	{
+		move = get_move(*stack, biggest);
+		insert_part_2(stack, biggest, move, action_count);
+	}
+}
+
+int get_biggest(k_list *stack)
 {
 	int biggest;
 
-	biggest = nbr;
+	biggest = -2147483648;
 	while (stack)
 	{
-		if (stack->content > nbr && stack->content > biggest)
-		{
+		if (stack->content > biggest)
 			biggest = stack->content;
-			break;
-		}
 		stack = stack->next;
 	}
 	return biggest;
 }
 
-int find_next_smallest(k_list *stack, int smallest, int nbr)
+int get_second_biggest(k_list *stack, int biggest)
 {
+	int second_biggest;
+
+	second_biggest = -2147483648;
 	while (stack)
 	{
-		if (stack->content < nbr && stack->content > smallest)
+		if (stack->content > second_biggest && stack->content < biggest)
+			second_biggest = stack->content;
+		stack = stack->next;
+	}
+	return second_biggest;
+}
+
+int get_smallest(k_list *stack)
+{
+	int smallest;
+
+	smallest = 2147483647;
+	while (stack)
+	{
+		if (stack->content < smallest)
 			smallest = stack->content;
 		stack = stack->next;
 	}
 	return smallest;
 }
 
-void calculate_move_insert(k_list *stack, int nbr)
-{
-	k_list *head;
-	int smallest;
-	int biggest;
-
-	head = stack;
-	smallest = find_first_smallest(stack, nbr);
-	biggest = find_biggest(stack, nbr);
-
-	printf("NEXT SMALL=%d\n", smallest);
-
-	if (smallest != nbr)
-	{
-		smallest = find_next_smallest(stack, smallest, nbr);
-		printf("BIGGEST SMALL=%d\n", smallest);
-	}
-	else
-	{
-		printf("BIGGEST=%d\n", biggest);
-	}
-	
-	
-
-	// head = stack;
-	// while (head)
-	// {
-	// 	if (head->content < nbr && head->content > next_smallest)
-	// 		next_smallest = head->content;
-	// 	size++;
-	// 	head = head->next;
-	// }
-	// head = stack;
-	// while (head && head->content != next_smallest)
-	// {
-	// 	position++;
-	// 	head = head->next;
-	// }
-	// if ((size - position) < position)
-	// 	return (size - position);
-	// return position; 
-}
-
-// void calculate_move_total(k_list *stack_a, k_list *stack_b)
-// {
-// 	k_list *head = stack_a;
-// 	int insert = 0;
-// 	int extract = 0;
-// 	int total;
-// 	int best;
-// 	int best_int;
-
-// 	best = 10000;
-// 	while (stack_a)
-// 	{
-// 		extract = calculate_move_extract(head, stack_a->content);
-// 		insert = calculate_move_insert(stack_b, stack_a->content);
-// 		total = extract + insert;
-// 		if (total < best)
-// 		{
-// 			best = total;
-// 			best_int = stack_a->content;
-// 		}
-// 		printf("%d extract=%d insert=%d\n", stack_a->content, extract, insert);
-// 		stack_a = stack_a->next;
-// 	}
-// 	printf("BEST=%d\n", best_int);
-// }
-
 int	main(void)
 {
-	char	*stack_a_str;
-	char	*stack_b_str;
-	char	**stack_a;
-	char	**stack_b;
-	k_list	*stack_a_list;
-	k_list	*stack_b_list;
+	k_list	*stack_a;
+	k_list	*stack_b;
 	int action_count;
+	int best;
+	int biggest;
+	int second_biggest;
+	int smallest;
 
 	action_count = 0;
-	stack_a_str = "5 4 2 3 1";
-	stack_b_str = "6 4 5";
-	stack_a = ft_split(stack_a_str, ' ');
-	stack_b = ft_split(stack_b_str, ' ');
-	stack_a_list = get_stack(stack_a);
-	stack_b_list = get_stack(stack_b);
+	stack_a = get_stack("80 51 98 -212 -40 -127 209 176 -138 0 110 139 68 -200 239 248 138 -75 -171 -168 49 -39 62 75 129 -20 92 -70 -85 148 185 224 -23 198 -29 161 188 -71 -15 174 -7 -21 120 42 -119 55 -208 -128 -64 170 -124 -248 -231 150 227 -247 54 203 118 78 -179 96 168 30 56 41 194 -234 35 103 -228 -18 181 223 -191 -198 -162 5 -34 -166 -243 -219 82 246 17 -165 -239 196 23 114 -249 104 60 134 106 61 -174 -102 25 122 -30 -66 52 88 202 -201 34 -226 -184 178 244 57 191 -209 2 32 47 121 147 -235 245 6 175 159 -5 -46 112 -151 -238 -120 -206 -1 -56 162 -105 -203 149 -233 -90 -149 -161 229 179 -160 226 -143 124 -211 158 -213 -245 -96 -52 -189 -144 221 -33 201 3 -41 -4 216 1 238 -157 -180 208 100 -72 -82 -246 -217 91 69 -94 -110 65 -223 -3 173 -47 -205 243 164 214 -170 -51 126 14 157 -25 -169 230 116 -95 193 155 -155 200 93 192 -68 -57 94 -86 15 -207 -177 -236 -32 -62 -83 -158 -116 -114 -232 -101 -221 -79 -61 -145 -122 -13 215 206 29 128 154 204 97 -227 225 -36 -12 -58 83 145 66 -134 222 -229 -99 -24 143 -218 -111 160 -242 -73 48 -195 207 115 249 45 131 89 240 167 -112 151 -63 37 -196 -11 -88 -225 -126 -100 99 63 117 -81 -115 -135 -59 26 -202 125 -175 -147 135 -43 -220 59 -193 -183 105 27 -146 -98 232 39 76 -54 247 -139 205 -103 -76 210 -14 7 190 177 -55 46 234 153 -6 -133 -167 12 -141 -153 132 86 -240 -50 -194 231 -65 136 90 -137 -159 -113 4 -142 -216 38 -173 250 187 -152 -28 123 -154 -123 -129 -37 -104 20 -108 71 130 -2 -84 -199 -241 -176 141 -106 18 -117 182 -26 -163 237 183 140 144 -91 -97 81 -131 -31 -87 24 -136 241 -185 -27 -215 111 40 -222 -44 228 218 85 142 -181 197 -214 107 74 -107 195 -164 -130 102 169 189 219 165 -48 77 108 152 211 -156 67 -67 -74 -187 127 -69 -140 87 -45 -78 101 21 171 8 -172 19 -244 156 -35 -210 -250 11 233 72 -22 133 -190 70 217 137 166 53 235 28 50 146 10 199 184 -60 242 64 -42 79 31 180 109 163 -148 43 84 119 58 -188 -8 -125 -92 -182 44 -121 33 220 -118 -89 -16 -10 -93 13 -237 -197 -230 -109 -17 36 -38 73 95 212 -186 213 -150 236 -132 -9 -204 113 -224 -53 -49 22 -178 186 9 172 -77 16 -80 -192");
+	stack_b = get_stack("");
+	biggest = get_biggest(stack_a);
+	second_biggest = get_second_biggest(stack_a, biggest);
 	// stack_b_list = NULL;
 
-
+	// while (get_stack_size(stack_a_list) != 2)
 
 	// ra(&stack_a_list, stack_a_list, &action_count);
 	// pb(&stack_a_list, &stack_b_list, &action_count);
-	// rra(&stack_a_list, stack_a_list, &action_count);
 	// rb(&stack_b_list, stack_b_list, &action_count);
 	// sa(stack_a_list, &action_count); // swap a1 a2
 
 	// pa(&stack_a_list, &stack_b_list, &action_count);
 
 
-	// printf("extract=%d\n",calculate_move_extract(stack_a_list, 54));
+	// printf("extract=%d\n",calculate_move_extract(stack_a_list, 4));
 	// printf("insert=%d\n",calculate_move_insert(stack_b_list, 54));
-	calculate_move_insert(stack_b_list, 3);
-	// calculate_move_total(stack_a_list, stack_b_list);
+	// calculate_move_insert(stack_b_list, 0);
+		// printf("%d", biggest);
 
-	// printf("%d\n", test);
-	// sa(stack_a_list); // swap a1 a2
-	// sb(stack_b_list); // swap b1 b2
-	// ss(stack_a_list, stack_b_list); // sa sb
-	// pa(&stack_a_list, &stack_b_list);
-	// pb(&stack_a_list, &stack_b_list);
-	// ra(&stack_a_list, stack_a_list);
-	// rb(&stack_b_list, stack_b_list);
-	// rr(&stack_a_list, &stack_b_list);
-	// rra(&stack_a_list, stack_a_list);
-	// rrb(&stack_b_list, stack_b_list);
-	// rrr(&stack_a_list, stack_a_list, &stack_b_list, stack_b_list);
 
-	// printf("COUNT=%d\n", action_count);
-	print_list(stack_a_list);
-	print_list(stack_b_list);
-	clear_list(&stack_a_list, stack_a);
-	clear_list(&stack_b_list, stack_b);
+	while (get_stack_size(stack_a) != 400)
+	{
+		best = calculate_move_total(stack_a, stack_b, biggest, second_biggest);
+		extract(&stack_a, best, &action_count);
+		insert(&stack_b, best, &action_count);
+		pb(&stack_a, &stack_b, &action_count);
+	}
+
+	// biggest = get_biggest(stack_b);
+	// if (stack_a->content >stack_a->next->content)
+	// 	sa(stack_a, &action_count);
+	// if (check_is_reverse_better(stack_b, biggest))
+	// 	while (stack_b->content != biggest)
+	// 		rrb(&stack_b, stack_b, &action_count);
+	// else
+	// 	while (stack_b->content != biggest)
+	// 		rb(&stack_b, stack_b, &action_count);
+	// while (get_stack_size(stack_b) != 0)
+	// 	pa(&stack_a, &stack_b, &action_count);
+
+
+	printf("COUNT=====%d\n", action_count);
+	print_list(stack_a);
+	print_list(stack_b);
+	clear_list(&stack_a);
+	clear_list(&stack_b);
 }

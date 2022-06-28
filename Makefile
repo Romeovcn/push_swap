@@ -1,4 +1,4 @@
-SRCS	= push_swap.c get_lst.c operations.c
+SRCS	= push_swap.c get_lst.c operations.c utils.c calculate_move.c
 
 LIB		= ./libft/libft.a
 
