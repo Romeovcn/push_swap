@@ -37,23 +37,6 @@ k_list	*lstnew(int content)
 	return (result);
 }
 
-// k_list	*get_stack(char **stack)
-// {
-// 	k_list	*result;
-// 	int		i;
-// 	int		nbr;
-
-// 	i = 0;
-// 	result = NULL;
-// 	while (stack[i])
-// 	{
-// 		nbr = ft_atoi(stack[i]);
-// 		lstadd_back(&result, lstnew(nbr));
-// 		i++;
-// 	}
-// 	return (result);
-// }
-
 k_list	*get_stack(char *stack_str)
 {
 	char **stack_array;

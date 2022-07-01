@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	sa(k_list *stack_a, int *count)
+void	sa(k_list *stack_a)
 {
 	int	tmp;
 
@@ -9,28 +9,9 @@ void	sa(k_list *stack_a, int *count)
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;
 	stack_a->next->content = tmp;
-	(*count) = (*count) + 1;
-	printf("sa\n");
 }
 
-// void	sb(k_list *stack_b)
-// {
-// 	int	tmp;
-
-// 	if (!stack_b)
-// 		return ;
-// 	tmp = stack_b->content;
-// 	stack_b->content = stack_b->next->content;
-// 	stack_b->next->content = tmp;
-// }
-
-// void	ss(k_list *stack_a, k_list *stack_b)
-// {
-// 	sa(stack_a);
-// 	sb(stack_b);
-// }
-
-void	pa(k_list **stack_a, k_list **stack_b, int *count)
+void	pa(k_list **stack_a, k_list **stack_b)
 {
 	k_list	*tmp;
 
@@ -40,11 +21,9 @@ void	pa(k_list **stack_a, k_list **stack_b, int *count)
 	(*stack_b)->next = *stack_a;
 	*stack_a = *stack_b;
 	*stack_b = tmp;
-	(*count) = (*count) + 1;
-	printf("pa\n");
 }
 
-void	pb(k_list **stack_a, k_list **stack_b, int *count)
+void	pb(k_list **stack_a, k_list **stack_b)
 {
 	k_list	*tmp;
 
@@ -54,11 +33,9 @@ void	pb(k_list **stack_a, k_list **stack_b, int *count)
 	(*stack_a)->next = *stack_b;
 	*stack_b = *stack_a;
 	*stack_a = tmp;
-	(*count) = (*count) + 1;
-	printf("pb\n");
 }
 
-void	ra(k_list **stack_a_ptr, k_list *stack_a, int *count)
+void	ra(k_list **stack_a_ptr, k_list *stack_a)
 {
 	k_list	*tmp;
 
@@ -70,11 +47,9 @@ void	ra(k_list **stack_a_ptr, k_list *stack_a, int *count)
 	stack_a->next = tmp;
 	*stack_a_ptr = (*stack_a_ptr)->next;
 	tmp->next = NULL;
-	(*count) = (*count) + 1;
-	printf("ra\n");
 }
 
-void	rb(k_list **stack_b_ptr, k_list *stack_b, int *count)
+void	rb(k_list **stack_b_ptr, k_list *stack_b)
 {
 	k_list	*tmp;
 
@@ -86,18 +61,15 @@ void	rb(k_list **stack_b_ptr, k_list *stack_b, int *count)
 	stack_b->next = tmp;
 	*stack_b_ptr = (*stack_b_ptr)->next;
 	tmp->next = NULL;
-	(*count) = (*count) + 1;
-	printf("rb\n");
 }
 
-void	rr(k_list **stack_a_ptr, k_list **stack_b_ptr, int *count)
+void	rr(k_list **stack_a_ptr, k_list **stack_b_ptr)
 {
-	ra(stack_a_ptr, *stack_a_ptr, count);
-	rb(stack_b_ptr, *stack_b_ptr, count);
-	(*count) = (*count) - 1;
+	ra(stack_a_ptr, *stack_a_ptr);
+	rb(stack_b_ptr, *stack_b_ptr);
 }
 
-void	rra(k_list **stack_a_ptr, k_list *stack_a, int *count)
+void	rra(k_list **stack_a_ptr, k_list *stack_a)
 {
 	k_list	*tmp;
 
@@ -109,11 +81,9 @@ void	rra(k_list **stack_a_ptr, k_list *stack_a, int *count)
 	stack_a->next = NULL;
 	tmp->next = *stack_a_ptr;
 	*stack_a_ptr = tmp;
-	(*count) = (*count) + 1;
-	printf("rra\n");
 }
 
-void	rrb(k_list **stack_b_ptr, k_list *stack_b, int *count)
+void	rrb(k_list **stack_b_ptr, k_list *stack_b)
 {
 	k_list	*tmp;
 
@@ -125,13 +95,10 @@ void	rrb(k_list **stack_b_ptr, k_list *stack_b, int *count)
 	stack_b->next = NULL;
 	tmp->next = *stack_b_ptr;
 	*stack_b_ptr = tmp;
-	(*count) = (*count) + 1;
-	printf("rrb\n");
 }
 
-void	rrr(k_list **stack_a_ptr, k_list **stack_b_ptr, int *count)
+void	rrr(k_list **stack_a_ptr, k_list **stack_b_ptr)
 {
-	rra(stack_a_ptr, *stack_a_ptr, count);
-	rrb(stack_b_ptr, *stack_b_ptr, count);
-	(*count) = (*count) - 1;
+	rra(stack_a_ptr, *stack_a_ptr);
+	rrb(stack_b_ptr, *stack_b_ptr);
 }
