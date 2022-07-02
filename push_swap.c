@@ -17,7 +17,7 @@ int check_is_reverse_better(k_list *stack, int nbr)
 	return 0; 	
 }
 
-void do_op(k_list **stack_a, k_list **stack_b, t_move best, int *action_count)
+void do_op(k_list **stack_a, k_list **stack_b, t_move best)
 {
 	while (best.rra--)
 	{
@@ -36,7 +36,7 @@ void do_op(k_list **stack_a, k_list **stack_b, t_move best, int *action_count)
 	}
 }
 
-void do_op2(k_list **stack_a, k_list **stack_b, t_move best, int *action_count)
+void do_op2(k_list **stack_a, k_list **stack_b, t_move best)
 {
 	while (best.ra--)
 	{
@@ -55,7 +55,6 @@ void do_op2(k_list **stack_a, k_list **stack_b, t_move best, int *action_count)
 	}
 }
 
-
 int get_biggest(k_list *stack)
 {
 	int biggest;
@@ -70,7 +69,7 @@ int get_biggest(k_list *stack)
 	return biggest;
 }
 
-int get_second_biggest(k_list *stack, int biggest)
+int get_next_biggest(k_list *stack, int biggest)
 {
 	int second_biggest;
 
@@ -84,51 +83,48 @@ int get_second_biggest(k_list *stack, int biggest)
 	return second_biggest;
 }
 
-int get_smallest(k_list *stack)
-{
-	int smallest;
-
-	smallest = 2147483647;
-	while (stack)
-	{
-		if (stack->content < smallest)
-			smallest = stack->content;
-		stack = stack->next;
-	}
-	return smallest;
-}
-
 int	main(int argc, char **argv)
 {
 	k_list	*stack_a;
 	k_list	*stack_b;
-	int action_count;
 	t_move best;
 	int biggest;
 	int second_biggest;
-	int smallest;
+	int third_biggest;
 
-	action_count = 0;
 	stack_a = get_stack(argv[1]);
 	stack_b = get_stack("");
 	biggest = get_biggest(stack_a);
-	second_biggest = get_second_biggest(stack_a, biggest);
+	second_biggest = get_next_biggest(stack_a, biggest);
+	third_biggest = get_next_biggest(stack_a, second_biggest);
 
-	while (get_stack_size(stack_a) != 2)
+
+	while (get_stack_size(stack_a) != 3)
 	{
-		best = calculate_move_total(stack_a, stack_b, biggest, second_biggest);
-		do_op(&stack_a, &stack_b, best, &action_count);
-		do_op2(&stack_a, &stack_b, best, &action_count);
+		best = calculate_move_total(stack_a, stack_b, biggest, second_biggest, third_biggest);
+		do_op(&stack_a, &stack_b, best);
+		do_op2(&stack_a, &stack_b, best);
 		pb(&stack_a, &stack_b);
 		ft_printf("pb\n");
 	}
 
-	biggest = get_biggest(stack_b);
+	if (stack_a->content == biggest)
+	{
+		ra(&stack_a, stack_a);
+		ft_printf("ra\n");
+	}
+	if (stack_a->next->content == biggest)
+	{
+		rra(&stack_a, stack_a);
+		ft_printf("rra\n");
+	}
 	if (stack_a->content >stack_a->next->content)
 	{
 		sa(stack_a);
 		ft_printf("sa\n");
 	}
+
+	biggest = get_biggest(stack_b);
 	if (check_is_reverse_better(stack_b, biggest))
 		while (stack_b->content != biggest)
 		{
@@ -147,11 +143,9 @@ int	main(int argc, char **argv)
 		ft_printf("pa\n");
 	}
 
-
 	// print_list(stack_a);
-	// printf("\n");
+	// printf("---------------------------------------------\n");
 	// print_list(stack_b);
-	// printf("%d\n", action_count);
 	clear_list(&stack_a);
 	clear_list(&stack_b);
 }

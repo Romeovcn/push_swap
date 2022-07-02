@@ -3,27 +3,52 @@ i=0
 max=0
 nb=0
 wrong=0
+seq=0
+maxseq=0
 
 make
-while [ $i -le 100 ]
+#while [ $i -le 1000 ]
+#do
+#	#echo -ne "\e[93m"
+#	#cat pika | awk "NR==($i%49)"
+#	if [ $nb -ge $max ]
+#	then
+#		max=$nb
+#	fi
+#	if [ $nb -ge 5500 ]
+#	then
+#		wrong=$(( $wrong + 1 ))
+#	fi
+#	nb=$(ARG=$(seq 1 100 | gshuf | tr '\n' ' ') ; ./a.out "$ARG" | wc -l)
+#	i=$(( $i + 1 ))
+#	 echo $nb
+#	 echo $wrong
+#done
+
+#echo $max
+#echo $wrong
+#echo "Dont forget to follow me on instagram"
+while [ $i -lt 100 ]
 do
-	echo -ne "\e[93m"
-	cat pika | awk "NR==($i%49)"
-	if [ $nb -ge $max ]
+	seq=$(seq 1 500 | gshuf | tr '\n' ' ')
+	nb=$(./a.out "$seq" | wc -l)
+	#echo -ne "\e[93m"
+	#cat pika | awk "NR==($i%49)"
+	if [ $nb -gt $max ]
 	then
 		max=$nb
+		maxseq=$seq
 	fi
-	if [ $nb -ge 5500 ]
+	if [ $nb -gt 5500 ]
 	then
 		wrong=$(( $wrong + 1 ))
+		echo $seq
 	fi
-	echo -ne "\e[0m"
-	nb=$(ARG=$(seq 1 100 | shuf | tr '\n' ' ') ; ./a.out "$ARG" | wc -l)
-	# echo $nb
-	# echo $wrong
+	echo $nb
+	echo $wrong
 	i=$(( $i + 1 ))
 done
 
-echo $max
-echo $wrong
-echo "Dont forget to follow me on instagram"
+echo "max = $max"
+echo "total wrong = $wrong"
+#echo "max seq=$maxseq"
