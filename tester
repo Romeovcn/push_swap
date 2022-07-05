@@ -28,9 +28,9 @@ make
 #echo $max
 #echo $wrong
 #echo "Dont forget to follow me on instagram"
-while [ $i -lt 100 ]
+while [ $i -lt 10000 ]
 do
-	seq=$(seq 1 500 | gshuf | tr '\n' ' ')
+	seq=$(seq 1 100 | gshuf | tr '\n' ' ')
 	nb=$(./a.out "$seq" | wc -l)
 	#echo -ne "\e[93m"
 	#cat pika | awk "NR==($i%49)"
@@ -39,7 +39,7 @@ do
 		max=$nb
 		maxseq=$seq
 	fi
-	if [ $nb -gt 5500 ]
+	if [ $nb -gt 700 ]
 	then
 		wrong=$(( $wrong + 1 ))
 		echo $seq
