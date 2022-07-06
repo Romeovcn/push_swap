@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   calculate_move.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 17:26:43 by rvincent          #+#    #+#             */
+/*   Updated: 2022/07/06 18:00:50 by rvincent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int calculate_move_extract(k_list *stack, int nbr, t_move *current)
+int	calculate_move_extract(k_list *stack, int nbr, t_move *current)
 {
-	k_list *head;
-	int position;
-	int size;
+	k_list	*head;
+	int		position;
+	int		size;
 
 	head = stack;
 	position = 0;
@@ -22,16 +34,16 @@ int calculate_move_extract(k_list *stack, int nbr, t_move *current)
 	}
 	if ((size - position) < position)
 	{
-		current->rra = (size - position); 
+		current->rra = (size - position);
 		return (size - position);
 	}
-	current->ra = position; 
-	return position;
+	current->ra = position;
+	return (position);
 }
 
-int find_first_smallest(k_list *stack, int nbr)
+int	find_first_smallest(k_list *stack, int nbr)
 {
-	int next_smallest;
+	int	next_smallest;
 
 	next_smallest = nbr;
 	while (stack)
@@ -39,16 +51,16 @@ int find_first_smallest(k_list *stack, int nbr)
 		if (stack->content < nbr)
 		{
 			next_smallest = stack->content;
-			break;
+			break ;
 		}
 		stack = stack->next;
 	}
-	return next_smallest;
+	return (next_smallest);
 }
 
-int find_biggest(k_list *stack, int nbr)
+int	find_biggest(k_list *stack, int nbr)
 {
-	int biggest;
+	int	biggest;
 
 	biggest = nbr;
 	while (stack)
@@ -57,10 +69,10 @@ int find_biggest(k_list *stack, int nbr)
 			biggest = stack->content;
 		stack = stack->next;
 	}
-	return biggest;
+	return (biggest);
 }
 
-int find_next_smallest(k_list *stack, int smallest, int nbr)
+int	find_next_smallest(k_list *stack, int smallest, int nbr)
 {
 	while (stack)
 	{
@@ -68,13 +80,13 @@ int find_next_smallest(k_list *stack, int smallest, int nbr)
 			smallest = stack->content;
 		stack = stack->next;
 	}
-	return smallest;
+	return (smallest);
 }
 
-int get_move(k_list *stack, int nbr, t_move *current)
+int	get_move(k_list *stack, int nbr, t_move *current)
 {
-	int position;
-	int size;
+	int	position;
+	int	size;
 
 	position = 0;
 	size = get_stack_size(stack);
@@ -88,40 +100,31 @@ int get_move(k_list *stack, int nbr, t_move *current)
 		current->rrb = (size - position);
 		return (size - position);
 	}
-		current->rb = position;
-	return position; 
+	current->rb = position;
+	return (position);
 }
 
-int calculate_move_insert(k_list *stack, int nbr, t_move *current)
+int	calculate_move_insert(k_list *stack, int nbr, t_move *current)
 {
-	k_list *head;
-	int smallest;
-	int biggest;
-	int move;
+	k_list	*head;
+	int		smallest;
+	int		biggest;
+	int		move;
 
 	head = stack;
 	smallest = find_first_smallest(stack, nbr);
 	biggest = find_biggest(stack, nbr);
-
-	// printf("FIRST SMALL=%d\n", smallest);
-
 	if (smallest != nbr)
 	{
 		smallest = find_next_smallest(stack, smallest, nbr);
 		move = get_move(stack, smallest, current);
-		// printf("BIGGEST SMALL=%d\n", smallest);
 	}
 	else
-	{
 		move = get_move(stack, biggest, current);
-		// printf("BIGGEST=%d\n", biggest);
-	}
-	// printf("POS=%d\n", move);
-	// printf("REVERSE=%d\n", check_is_reverse_better(stack, smallest));
-	return move;
+	return (move);
 }
 
-void init_struct(t_move *current)
+void	init_struct(t_move *current)
 {
 	current->rra = 0;
 	current->ra = 0;
@@ -132,16 +135,17 @@ void init_struct(t_move *current)
 	current->total = 0;
 }
 
-int get_total_move(t_move *current)
+int	get_total_move(t_move *current)
 {
-	int total;
+	int	total;
 
-	total = current->rra + current->ra + current->rrr + current->rr + current->rrb + current->rb;
+	total = current->rra + current->ra + current->rrr + current->rr
+		+ current->rrb + current->rb;
 	current->total = total;
-	return total;
+	return (total);
 }
 
-void rrr_check(t_move *current)
+void	reverse_check(t_move *current)
 {
 	while (current->ra >= 1 && current->rb >= 1)
 	{
@@ -157,23 +161,24 @@ void rrr_check(t_move *current)
 	}
 }
 
-int check_int_already_sorted(int nbr, k_list *sorted_int)
+int	check_int_already_sorted(int nbr, k_list *sorted_int)
 {
 	while (sorted_int)
 	{
 		if (sorted_int->content == nbr)
-			return 0;
+			return (0);
 		sorted_int = sorted_int->next;
 	}
-	return 1;
+	return (1);
 }
 
-t_move calculate_move_total(k_list *stack_a, k_list *stack_b, k_list *sorted_int, t_data data)
+t_move	calculate_move_total(k_list *stack_a, k_list *stack_b, t_data data)
 {
-	k_list *head = stack_a;
-	t_move current;
-	t_move best;
+	k_list	*head;
+	t_move	current;
+	t_move	best;
 
+	head = stack_a;
 	init_struct(&best);
 	best.rra = 2147483647;
 	while (stack_a)
@@ -182,17 +187,16 @@ t_move calculate_move_total(k_list *stack_a, k_list *stack_b, k_list *sorted_int
 		current.nbr = stack_a->content;
 		calculate_move_extract(head, stack_a->content, &current);
 		calculate_move_insert(stack_b, stack_a->content, &current);
-		rrr_check(&current);
-		if (get_total_move(&current) < get_total_move(&best) && stack_a->content != data.biggest 
-		&& stack_a->content != data.second_biggest && data.size <= 100)
+		reverse_check(&current);
+		if (get_total_move(&current) < get_total_move(&best)
+			&& stack_a->content != data.biggest
+			&& stack_a->content != data.second_biggest && data.size <= 100)
 			best = current;
-		if (get_total_move(&current) < get_total_move(&best) && check_int_already_sorted(current.nbr, sorted_int) && data.size > 100)
+		if (get_total_move(&current) < get_total_move(&best)
+			&& check_int_already_sorted(current.nbr, data.sorted_int)
+			&& data.size > 100)
 			best = current;
-		// printf("%d extract=%d insert=%d\n", stack_a->content, extract, insert);
 		stack_a = stack_a->next;
-		//printf("NBR=%d RRA=%d RA=%d RR=%d RRB=%d RB=%d RRR=%d TOTAL=%d\n\n", current.nbr, current.rra, current.ra, current.rr, current.rrb, current.rb, current.rrr, current.total);
 	}
-	// printf("BEST=%d extract=%d insert=%d TOTAL=%d\n", best.nbr, extractbest, insertbest, best.total);
-	// printf("BEST=%d\n", best.nbr);
-	return best;
+	return (best);
 }

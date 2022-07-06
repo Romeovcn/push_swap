@@ -4,10 +4,10 @@ void	print_list(k_list *stack)
 {
 	while (stack)
 	{
-		printf("%d ", stack->content);
+		ft_printf("%d ", stack->content);
 		stack = stack->next;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	clear_list(k_list **stack_list)
@@ -24,7 +24,7 @@ void	clear_list(k_list **stack_list)
 
 int	get_stack_size(k_list *stack)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (stack)
@@ -35,9 +35,9 @@ int	get_stack_size(k_list *stack)
 	return (size);
 }
 
-int get_biggest(k_list *stack)
+int	get_biggest(k_list *stack)
 {
-	int biggest;
+	int	biggest;
 
 	biggest = -2147483648;
 	while (stack)
@@ -46,12 +46,12 @@ int get_biggest(k_list *stack)
 			biggest = stack->content;
 		stack = stack->next;
 	}
-	return biggest;
+	return (biggest);
 }
 
-int get_second_biggest(k_list *stack, int biggest)
+int	get_next_biggest(k_list *stack, int biggest)
 {
-	int second_biggest;
+	int	second_biggest;
 
 	second_biggest = -2147483648;
 	while (stack)
@@ -60,12 +60,12 @@ int get_second_biggest(k_list *stack, int biggest)
 			second_biggest = stack->content;
 		stack = stack->next;
 	}
-	return second_biggest;
+	return (second_biggest);
 }
 
-int get_smallest(k_list *stack)
+int	get_smallest(k_list *stack)
 {
-	int smallest;
+	int	smallest;
 
 	smallest = 2147483647;
 	while (stack)
@@ -74,13 +74,48 @@ int get_smallest(k_list *stack)
 			smallest = stack->content;
 		stack = stack->next;
 	}
-	return smallest;
+	return (smallest);
 }
 
-void get_data(k_list	*stack_a, t_data *data)
+void	get_data(k_list *stack_a, t_data *data)
 {
 	data->size = get_stack_size(stack_a);
 	data->smallest = get_smallest(stack_a);
 	data->biggest = get_biggest(stack_a);
-	data->second_biggest = get_second_biggest(stack_a, data->biggest);
+	data->second_biggest = get_next_biggest(stack_a, data->biggest);
+}
+
+int	check_is_reverse_better(k_list *stack, int nbr)
+{
+	int	position;
+	int	size;
+
+	position = 0;
+	size = get_stack_size(stack);
+	while (stack && stack->content != nbr)
+	{
+		position++;
+		stack = stack->next;
+	}
+	if ((size - position) < position)
+		return (1);
+	return (0);
+}
+
+void	tester(k_list *stack_a)
+{
+	int	previous;
+	int	i;
+
+	previous = -2147483648;
+	i = 0;
+	while (stack_a)
+	{
+		if (stack_a->content < previous)
+			printf("%d IS BIGGER THAN %d ERROR\n", previous, stack_a->content);
+		i++;
+		previous = stack_a->content;
+		stack_a = stack_a->next;
+	}
+	printf("SIZE=%d\n", i);
 }
