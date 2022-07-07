@@ -1,3 +1,7 @@
+SRCSDIR	= srcs
+
+OBJSDIR	= objs
+
 SRCS	=	push_swap.c \
 			get_stack.c \
 			operations.c \
@@ -8,13 +12,13 @@ SRCS	=	push_swap.c \
 			do_op.c \
 			sort_big_stack.c \
 			sort_small_stack.c \
-			check_error.c\
+			check_error.c \
 
 LIB		= ./libft/libft.a
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	= ${patsubst %.c,${OBJSDIR}/%.o,${SRCS}}
 
-DEPS	= push_swap.h
+HEADERS	= push_swap.h
 
 NAME	= push_swap
 
@@ -22,24 +26,26 @@ CC	= gcc
 
 CFLAGS	= -Wall -Werror -Wextra                     
 
-.c.o:
-	@${CC} -c $< -o ${<:.c=.o}
-
-${NAME}:	${OBJS}  ${DEPS}
+${NAME}:	$(OBJSDIR) ${OBJS} ${HEADERS}
 	@make -C ./libft
 	@$(CC) $(OBJS) $(LIB) -o ${NAME}
+	@echo "Push_swap compiled !"
 	@echo ----------------------------
 
 all:	${NAME}
 
-clean:
-	@rm -f ${OBJS}
-	@make -C ./libft clean
+$(OBJSDIR):
+	@mkdir ${OBJSDIR}
 
-fclean:
-	@rm -vf ${NAME} ${OBJS}
-	@make -C ./libft fclean
+${OBJSDIR}/%.o: ${SRCSDIR}/%.c
+	@${CC} -I. -c $< -o $@
+
+clean:
+	@rm -rf ${OBJS} $(OBJSDIR)
+
+fclean:	clean
+	@rm -f ${NAME}
 
 re: fclean all
 
-.PHONY:	all clean fclean re bonus
+.PHONY:	all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:08:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/06 20:24:01 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/07 23:01:52 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_digit_error(char *nbr)
 	int size;
 
 	i = 0;
-	size;
+	size = 0;
 	while (nbr[size])
 		size++;
 	if (nbr[i] == '-' && size > 1)
