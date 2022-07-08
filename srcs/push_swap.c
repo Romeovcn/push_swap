@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:52:19 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/08 23:51:29 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:52:45 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	main(int argc, char **argv)
 		}	
 	}
 	// tester(stack_a);
-	printf("---------------------------------------------\n");
-	print_list(stack_a);
-	printf("---------------------------------------------\n");
-	print_list(stack_b);
-	printf("---------------------------------------------\n");
-	print_list(data.sorted_int);
+	// printf("---------------------------------------------\n");
+	// print_list(stack_a);
+	// printf("---------------------------------------------\n");
+	// print_list(stack_b);
+	// printf("---------------------------------------------\n");
+	// print_list(data.sorted_int);
 	clear_list(&stack_a);
 	clear_list(&data.sorted_int);
 }
