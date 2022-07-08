@@ -119,3 +119,21 @@ void	tester(k_list *stack_a)
 	}
 	printf("SIZE=%d\n", i);
 }
+
+int	is_sorted(k_list *stack_a)
+{
+	int	previous;
+	int	i;
+
+	previous = -2147483648;
+	i = 0;
+	while (stack_a)
+	{
+		if (stack_a->content < previous)
+			return (0);
+		i++;
+		previous = stack_a->content;
+		stack_a = stack_a->next;
+	}
+	return (1);
+}

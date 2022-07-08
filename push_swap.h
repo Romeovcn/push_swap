@@ -64,6 +64,7 @@ int						get_next_biggest(k_list *stack, int biggest);
 void					get_data(k_list *stack_a, t_data *data);
 int						check_is_reverse_better(k_list *stack, int nbr);
 void					tester(k_list *stack_a);
+int					is_sorted(k_list *stack_a);
 
 int						calculate_move_extract(k_list *stack, int nbr,
 							t_move *current);
@@ -82,8 +83,6 @@ void					init_struct(t_move *current);
 
 int						get_first_bigger(k_list *stack, int nbr);
 int						get_next_bigger(k_list *stack, int nbr);
-int						get_move_stack_a(k_list *stack, int nbr,
-							t_move *current);
 t_move					calculate_insert_stack_a(int nbr, k_list *stack);
 
 void					do_op(k_list **stack_a, k_list **stack_b, t_move best);
@@ -103,8 +102,7 @@ void					put_second_half_back(k_list **stack_a, k_list **stack_b,
 
 void					sort_in_stack_b(k_list **stack_a, k_list **stack_b,
 							t_data *data, t_move *best);
-void					push_back_stack_a(k_list **stack_a, k_list **stack_b,
-							t_data *data, t_move *best);
+void					push_back_stack_a(k_list **stack_a, k_list **stack_b);
 
 // Check error
 

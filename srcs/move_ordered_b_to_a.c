@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:54:38 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/06 17:55:39 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:49:10 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	get_next_bigger(k_list *stack, int nbr)
 	return (next_bigger);
 }
 
-int	get_move_stack_a(k_list *stack, int nbr, t_move *current)
+void	get_move_stack_a(k_list *stack, int nbr, t_move *current)
 {
 	int	position;
 	int	size;
@@ -58,28 +58,24 @@ int	get_move_stack_a(k_list *stack, int nbr, t_move *current)
 	if ((size - position) < position)
 	{
 		current->rra = (size - position);
-		return (size - position);
+		return ;
 	}
 	current->ra = position;
-	return (position);
 }
 
 t_move	calculate_insert_stack_a(int nbr, k_list *stack)
 {
 	t_move	best;
-	int		move;
-	int		size;
 	int		next_bigger;
 	int		smallest;
 
-	size = get_stack_size(stack);
 	next_bigger = get_next_bigger(stack, nbr);
 	smallest = get_smallest(stack);
 	init_struct(&best);
 	best.nbr = nbr;
 	if (next_bigger != nbr)
-		move = get_move_stack_a(stack, next_bigger, &best);
+		get_move_stack_a(stack, next_bigger, &best);
 	else
-		move = get_move_stack_a(stack, smallest, &best);
+		get_move_stack_a(stack, smallest, &best);
 	return (best);
 }

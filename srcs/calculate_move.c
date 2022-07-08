@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:26:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/06 18:00:50 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:47:04 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,10 @@ int	get_move(k_list *stack, int nbr, t_move *current)
 
 int	calculate_move_insert(k_list *stack, int nbr, t_move *current)
 {
-	k_list	*head;
 	int		smallest;
 	int		biggest;
 	int		move;
 
-	head = stack;
 	smallest = find_first_smallest(stack, nbr);
 	biggest = find_biggest(stack, nbr);
 	if (smallest != nbr)

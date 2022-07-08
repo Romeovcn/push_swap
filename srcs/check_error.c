@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:08:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/07 23:01:52 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:51:55 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 int	check_max_int(char *nbr_str, long nbr)
 {
 	int	nbr_char;
-	int	i;
 
 	nbr_char = 0;
-	i = 0;
 	while (nbr_str[nbr_char])
 		nbr_char++;
 	if (nbr_char > 10 || nbr > 2147483647 || nbr < -2147483648)
@@ -62,9 +60,10 @@ int	check_digit_error(char *nbr)
 void	check_error(k_list *stack, long nbr, char *argv)
 {
 	if (check_max_int(argv, nbr) || check_duplicate(stack, nbr)
-		|| check_digit_error(argv))
+		|| check_digit_error(argv) || ft_strlen(argv) == 0)
 	{
 		ft_printf("Error\n");
+		clear_list(&stack);
 		exit(0);
 	}
 	return ;

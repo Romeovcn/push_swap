@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:24:14 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/06 18:58:22 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:24:27 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ k_list	*get_2_args_stack(char *stack_str)
 	int		i;
 	long	nbr;
 
-	stack_array = ft_split(stack_str, ' ');
 	i = 0;
 	result = NULL;
+	stack_array = ft_split(stack_str, ' ');
 	while (stack_array[i])
 	{
 		nbr = ft_atoi(stack_array[i]);
@@ -97,7 +97,7 @@ k_list	*get_stack(int argc, char **argv)
 
 	if (argc == 1)
 		exit(0);
-	else if (argc == 2)
+	if (argc == 2)
 		result = get_2_args_stack(argv[1]);
 	else
 		result = get_multiple_args_stack(argv);

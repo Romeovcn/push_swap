@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:29:16 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/06 17:45:29 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/08 23:51:05 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ void	sort_in_stack_b(k_list **stack_a, k_list **stack_b, t_data *data,
 	}
 }
 
-void	push_back_stack_a(k_list **stack_a, k_list **stack_b, t_data *data,
-		t_move *best)
+void	push_back_stack_a(k_list **stack_a, k_list **stack_b)
 {
 	if (*stack_b && check_is_reverse_better(*stack_b, get_biggest(*stack_b)))
 	{
