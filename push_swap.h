@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
+/*   Updated: 2022/07/17 19:22:53 by rvincent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -24,7 +36,7 @@ typedef struct stack_list
 {
 	int					content;
 	struct stack_list	*next;
-}						k_list;
+}						t_stack;
 
 typedef struct s_data
 {
@@ -35,79 +47,94 @@ typedef struct s_data
 	int					second_biggest;
 	int					third_biggest;
 
-	k_list				*sorted_int;
+	t_stack				*sorted_int;
 }						t_data;
 
-void					sa(k_list *stack_a);
-void					pa(k_list **stack_a, k_list **stack_b);
-void					pb(k_list **stack_a, k_list **stack_b);
-void					ra(k_list **stack_a_ptr, k_list *stack_a);
-void					rb(k_list **stack_b_ptr, k_list *stack_b);
-void					rr(k_list **stack_a_ptr, k_list **stack_b_ptr);
-void					rra(k_list **stack_a_ptr, k_list *stack_a);
-void					rrb(k_list **stack_b_ptr, k_list *stack_b);
-void					rrr(k_list **stack_a_ptr, k_list **stack_b_ptr);
+void					sa(t_stack *stack_a);
+void					sb(t_stack *stack_b);
+void					ss(t_stack *stack_a, t_stack *stack_b);
+void					pa(t_stack **stack_a, t_stack **stack_b);
+void					pb(t_stack **stack_a, t_stack **stack_b);
+void					ra(t_stack **stack_a);
+void					rb(t_stack **stack_b_ptr);
+void					rr(t_stack **stack_a_ptr, t_stack **stack_b_ptr);
+void					rra(t_stack **stack_a);
+void					rrb(t_stack **stack_b_ptr);
+void					rrr(t_stack **stack_a_ptr, t_stack **stack_b_ptr);
 
-k_list					*get_stack(int argc, char **argv);
-void					clear_list(k_list **stack_list);
-int						get_stack_size(k_list *stack);
+// Get stack
+t_stack					*get_stack(int argc, char **argv);
+void					clear_list(t_stack **stact_stack);
+int						get_stack_size(t_stack *stack);
+
+// Get best big stack
+void					init_struct(t_move *current);
+void					reverse_check(t_move *current);
+int						check_int_already_sorted(int nbr, t_stack *sorted_int);
+int						get_total_move(t_move *current);
 
 // Utils
+t_stack					*lstlast(t_stack *lst);
+void					lstadd_back(t_stack **lst, t_stack *new);
+t_stack					*lstnew(int content);
+void					print_list(t_stack *stack);
+int						get_smallest(t_stack *stack);
+int						get_biggest(t_stack *stack);
+int						get_next_biggest(t_stack *stack, int biggest);
+void					get_data(t_stack *stack_a, t_data *data);
+int						check_is_reverse_better(t_stack *stack, int nbr);
+void					tester(t_stack *stack_a);
+int						is_sorted(t_stack *stack_a);
+void					push_stack_b_to_stack_a(t_stack **stack_a,
+							t_stack **stack_b);
 
-k_list					*lstlast(k_list *lst);
-void					lstadd_back(k_list **lst, k_list *new);
-k_list					*lstnew(int content);
-void					print_list(k_list *stack);
-int						get_smallest(k_list *stack);
-int						get_biggest(k_list *stack);
-int						get_next_biggest(k_list *stack, int biggest);
-void					get_data(k_list *stack_a, t_data *data);
-int						check_is_reverse_better(k_list *stack, int nbr);
-void					tester(k_list *stack_a);
-int					is_sorted(k_list *stack_a);
-
-int						calculate_move_extract(k_list *stack, int nbr,
+int						calculate_move_extract(t_stack *stack, int nbr,
 							t_move *current);
-int						find_first_smallest(k_list *stack, int nbr);
-int						find_biggest(k_list *stack, int nbr);
-int						find_next_smallest(k_list *stack, int smallest,
+int						find_first_smallest(t_stack *stack, int nbr);
+int						find_biggest(t_stack *stack, int nbr);
+int						find_next_smallest(t_stack *stack, int smallest,
 							int nbr);
-int						get_move(k_list *stack, int nbr, t_move *current);
-int						check_is_reverse_better(k_list *stack, int nbr);
-int						calculate_move_insert(k_list *stack, int nbr,
+int						get_move(t_stack *stack, int nbr, t_move *current);
+int						check_is_reverse_better(t_stack *stack, int nbr);
+int						calculate_move_insert(t_stack *stack, int nbr,
 							t_move *current);
-t_move					calculate_move_total(k_list *stack_a, k_list *stack_b,
+t_move					calculate_move_total(t_stack *stack_a, t_stack *stack_b,
 							t_data data);
 
 void					init_struct(t_move *current);
 
-int						get_first_bigger(k_list *stack, int nbr);
-int						get_next_bigger(k_list *stack, int nbr);
-t_move					calculate_insert_stack_a(int nbr, k_list *stack);
+int						get_first_bigger(t_stack *stack, int nbr);
+int						get_next_bigger(t_stack *stack, int nbr);
+t_move					calculate_insert_stack_a(int nbr, t_stack *stack);
 
-void					do_op(k_list **stack_a, k_list **stack_b, t_move best);
-void					do_op_2(k_list **stack_a, k_list **stack_b,
+void					do_op(t_stack **stack_a, t_stack **stack_b,
+							t_move best);
+void					do_op_2(t_stack **stack_a, t_stack **stack_b,
 							t_move best);
 
 // Sort big stack
+void					sort_first_half(t_stack **stack_a, t_stack **stack_b,
+							t_data *data, t_move *best);
+void					sort_second_half(t_stack **stack_a, t_stack **stack_b,
+							t_data *data, t_move *best);
+void					put_second_half_back(t_stack **stack_a,
+							t_stack **stack_b, t_data *data, t_move *best);
+void					sort_big_stack(t_stack **stack_a, t_stack **stack_b,
+							t_data *data, t_move *best);
 
-void					sort_first_half(k_list **stack_a, k_list **stack_b,
+// Sort medium stack
+void					sort_in_stack_b(t_stack **stack_a, t_stack **stack_b,
 							t_data *data, t_move *best);
-void					sort_second_half(k_list **stack_a, k_list **stack_b,
-							t_data *data, t_move *best);
-void					put_second_half_back(k_list **stack_a, k_list **stack_b,
+void					push_back_stack_a(t_stack **stack_a, t_stack **stack_b);
+void					sort_medium_stack(t_stack **stack_a, t_stack **stack_b,
 							t_data *data, t_move *best);
 
 // Sort small stack
-
-void					sort_in_stack_b(k_list **stack_a, k_list **stack_b,
-							t_data *data, t_move *best);
-void					push_back_stack_a(k_list **stack_a, k_list **stack_b);
+void					sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 
 // Check error
-
-int						check_duplicate(k_list *stack, long nbr);
+int						check_duplicate(t_stack *stack, long nbr);
 int						check_digit_error(char *nbr);
-void					check_error(k_list *stack, long nbr, char *argv);
+void					check_error(t_stack *stack, long nbr, char *argv);
 
 #endif

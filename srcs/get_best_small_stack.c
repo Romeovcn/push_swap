@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_ordered_b_to_a.c                              :+:      :+:    :+:   */
+/*   get_best_small_stack.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:54:38 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/08 23:49:10 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:46:57 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_first_bigger(k_list *stack, int nbr)
+int	get_first_bigger(t_stack *stack, int nbr)
 {
 	int	bigger;
 
@@ -29,7 +29,7 @@ int	get_first_bigger(k_list *stack, int nbr)
 	return (bigger);
 }
 
-int	get_next_bigger(k_list *stack, int nbr)
+int	get_next_bigger(t_stack *stack, int nbr)
 {
 	int	next_bigger;
 
@@ -43,7 +43,7 @@ int	get_next_bigger(k_list *stack, int nbr)
 	return (next_bigger);
 }
 
-void	get_move_stack_a(k_list *stack, int nbr, t_move *current)
+void	get_move_stack_a(t_stack *stack, int nbr, t_move *current)
 {
 	int	position;
 	int	size;
@@ -63,7 +63,7 @@ void	get_move_stack_a(k_list *stack, int nbr, t_move *current)
 	current->ra = position;
 }
 
-t_move	calculate_insert_stack_a(int nbr, k_list *stack)
+t_move	calculate_insert_stack_a(int nbr, t_stack *stack)
 {
 	t_move	best;
 	int		next_bigger;

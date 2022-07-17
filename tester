@@ -10,11 +10,11 @@ average=0
 
 make
 
-while [ $i -lt 50 ]
+while [ $i -lt 100 ]
 do
 	# echo -ne "\e[93m"
 	# cat pika | awk "NR==($i%49)"
-	seq=$(seq 1 500 | shuf | tr '\n' ' ')
+	seq=$(seq 1 500 | gshuf | tr '\n' ' ')
 	nb=$(./push_swap $seq | wc -l)
 	if [ $nb -gt $max ]
 	then
@@ -26,14 +26,14 @@ do
 		wrong=$(( $wrong + 1 ))
 		echo $seq
 	fi
-	echo $nb
-	echo $wrong
+	echo "moves = $nb"
+	echo "total wrong = $wrong"
 	echo ---------
 	average=$(( $average + $nb ))
 	i=$(( $i + 1 ))
 done
 
-echo "average = $((average/50))"
+echo "average = $((average/100))"
 echo "max = $max"
 echo "total wrong = $wrong"
 #echo "max seq=$maxseq"

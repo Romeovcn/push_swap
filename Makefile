@@ -6,17 +6,28 @@ SRCSBONUSDIR	= srcs_bonus
 
 SRCS	=	push_swap.c \
 			get_stack.c \
-			operations.c \
-			operations_part_2.c \
+			operations_stack_a.c \
+			operations_stack_b.c \
+			operations_reverse.c \
 			utils.c \
-			calculate_move.c \
-			move_ordered_b_to_a.c \
+			get_best_big_stack.c \
+			get_best_big_stack_part_2.c \
+			get_best_small_stack.c \
 			do_op.c \
 			sort_big_stack.c \
 			sort_small_stack.c \
+			sort_medium_stack.c \
 			check_error.c \
+			get_data.c \
 
 SRCS_BONUS	=	checker_bonus.c \
+				get_stack.c \
+				check_error.c \
+				utils.c \
+				get_data.c \
+				operations_stack_a.c \
+				operations_stack_b.c \
+				operations_reverse.c \
 
 LIB		= ./libft/libft.a
 
@@ -38,7 +49,7 @@ CFLAGS	= -Wall -Werror -Wextra
 
 ${NAME}:	${OBJSDIR} ${OBJS} ${HEADERS}
 	@make -C ./libft
-	@${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
+	@${CC} ${OBJS} ${LIB} -o ${NAME}
 	@echo "Push_swap compiled !"
 	@echo ----------------------------
 
@@ -48,7 +59,7 @@ $(OBJSDIR):
 	@mkdir ${OBJSDIR}
 
 ${OBJSDIR}/%.o: ${SRCSDIR}/%.c
-	@${CC} ${CFLAGS} -I. -c $< -o $@
+	@${CC} -I. -c $< -o $@
 
 clean:
 	@rm -rf ${OBJSDIR}

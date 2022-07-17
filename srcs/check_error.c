@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:08:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/08 23:51:55 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:50:28 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_max_int(char *nbr_str, long nbr)
 	return (0);
 }
 
-int	check_duplicate(k_list *stack, long nbr)
+int	check_duplicate(t_stack *stack, long nbr)
 {
 	while (stack)
 	{
@@ -37,8 +37,8 @@ int	check_duplicate(k_list *stack, long nbr)
 
 int	check_digit_error(char *nbr)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = 0;
@@ -57,7 +57,7 @@ int	check_digit_error(char *nbr)
 	return (0);
 }
 
-void	check_error(k_list *stack, long nbr, char *argv)
+void	check_error(t_stack *stack, long nbr, char *argv)
 {
 	if (check_max_int(argv, nbr) || check_duplicate(stack, nbr)
 		|| check_digit_error(argv) || ft_strlen(argv) == 0)

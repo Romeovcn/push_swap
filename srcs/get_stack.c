@@ -6,15 +6,15 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:24:14 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/08 22:24:27 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:33:48 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-k_list	*lstlast(k_list *lst)
+t_stack	*lstlast(t_stack *lst)
 {
-	k_list	*head;
+	t_stack	*head;
 
 	if (lst == NULL)
 		return (0);
@@ -24,9 +24,9 @@ k_list	*lstlast(k_list *lst)
 	return (head);
 }
 
-void	lstadd_back(k_list **lst, k_list *new)
+void	lstadd_back(t_stack **lst, t_stack *new)
 {
-	k_list	*last;
+	t_stack	*last;
 
 	if (*lst)
 	{
@@ -37,11 +37,11 @@ void	lstadd_back(k_list **lst, k_list *new)
 		*lst = new;
 }
 
-k_list	*lstnew(int content)
+t_stack	*lstnew(int content)
 {
-	k_list	*result;
+	t_stack	*result;
 
-	result = malloc(sizeof(k_list));
+	result = malloc(sizeof(t_stack));
 	if (!result)
 		return (0);
 	result->content = content;
@@ -49,10 +49,10 @@ k_list	*lstnew(int content)
 	return (result);
 }
 
-k_list	*get_2_args_stack(char *stack_str)
+t_stack	*get_2_args_stack(char *stack_str)
 {
 	char	**stack_array;
-	k_list	*result;
+	t_stack	*result;
 	int		i;
 	long	nbr;
 
@@ -73,9 +73,9 @@ k_list	*get_2_args_stack(char *stack_str)
 	return (result);
 }
 
-k_list	*get_multiple_args_stack(char **argv)
+t_stack	*get_multiple_args_stack(char **argv)
 {
-	k_list	*result;
+	t_stack	*result;
 	int		i;
 	long	nbr;
 
@@ -91,9 +91,9 @@ k_list	*get_multiple_args_stack(char **argv)
 	return (result);
 }
 
-k_list	*get_stack(int argc, char **argv)
+t_stack	*get_stack(int argc, char **argv)
 {
-	k_list	*result;
+	t_stack	*result;
 
 	if (argc == 1)
 		exit(0);
