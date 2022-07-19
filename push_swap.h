@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 18:41:25 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:14:20 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int						calculate_move_insert(t_stack *stack, int nbr,
 							t_move *current);
 t_move					calculate_move_total(t_stack *stack_a, t_stack *stack_b,
 							t_data data);
-
 
 int						get_first_bigger(t_stack *stack, int nbr);
 int						get_next_bigger(t_stack *stack, int nbr);
