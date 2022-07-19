@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 14:36:19 by rvincent          #+#    #+#             */
-/*   Updated: 2022/06/05 15:29:09 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:21:27 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*get_result(t_list_char *lst)
 		return (NULL);
 	}
 	result = malloc((size + 1) * sizeof(char));
+	if (!result)
+		return (0);
 	while (lst)
 	{
 		tmp = lst->next;
