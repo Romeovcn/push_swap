@@ -3,6 +3,8 @@
 		"unistd.h": "c",
 		"push_swap.h": "c",
 		"libft.h": "c",
-		"string.h": "c"
+		"string.h": "c",
+		"stdio.h": "c",
+		"push_swap_bonus.h": "c"
 	}
 }

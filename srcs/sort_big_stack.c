@@ -6,12 +6,11 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:28:23 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 17:33:48 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/17 22:52:25 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 void	sort_first_half(t_stack **stack_a, t_stack **stack_b, t_data *data,
 		t_move *best)
@@ -53,12 +52,12 @@ void	put_second_half_back(t_stack **stack_a, t_stack **stack_b, t_data *data,
 	}
 	while ((*stack_a)->content != data->smallest)
 	{
-		rra(stack_a, *stack_a);
+		rra(stack_a);
 		ft_printf("rra\n");
 	}
 }
 
-void sort_big_stack(t_stack **stack_a, t_stack **stack_b, t_data *data,
+void	sort_big_stack(t_stack **stack_a, t_stack **stack_b, t_data *data,
 		t_move *best)
 {
 	sort_first_half(stack_a, stack_b, data, best);

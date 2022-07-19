@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_small_stack.c                                 :+:      :+:    :+:   */
+/*   operations_reverse_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 21:29:16 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 22:50:31 by rvincent         ###   ########.fr       */
+/*   Created: 2022/07/17 18:43:04 by rvincent          #+#    #+#             */
+/*   Updated: 2022/07/17 22:25:44 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a_ptr, t_stack **stack_b_ptr)
 {
-	if ((*stack_a)->content > (*stack_a)->next->content)
-	{
-		sa(*stack_a);
-		ft_printf("sa\n");
-	}
+	rra(stack_a_ptr);
+	rrb(stack_b_ptr);
+}
+
+void	rr(t_stack **stack_a_ptr, t_stack **stack_b_ptr)
+{
+	ra(stack_a_ptr);
+	rb(stack_b_ptr);
+}
+
+void	ss(t_stack *stack_a, t_stack *stack_b)
+{
+	sa(stack_a);
+	sb(stack_b);
 }

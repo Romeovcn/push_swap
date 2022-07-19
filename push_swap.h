@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 19:22:53 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:41:25 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void					clear_list(t_stack **stact_stack);
 int						get_stack_size(t_stack *stack);
 
 // Get best big stack
-void					init_struct(t_move *current);
+void					init_struct(t_move *current, int nbr);
 void					reverse_check(t_move *current);
 int						check_int_already_sorted(int nbr, t_stack *sorted_int);
 int						get_total_move(t_move *current);
@@ -101,7 +101,6 @@ int						calculate_move_insert(t_stack *stack, int nbr,
 t_move					calculate_move_total(t_stack *stack_a, t_stack *stack_b,
 							t_data data);
 
-void					init_struct(t_move *current);
 
 int						get_first_bigger(t_stack *stack, int nbr);
 int						get_next_bigger(t_stack *stack, int nbr);

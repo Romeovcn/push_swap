@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:54:38 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 18:46:57 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:55:14 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ t_move	calculate_insert_stack_a(int nbr, t_stack *stack)
 
 	next_bigger = get_next_bigger(stack, nbr);
 	smallest = get_smallest(stack);
-	init_struct(&best);
-	best.nbr = nbr;
+	init_struct(&best, nbr);
 	if (next_bigger != nbr)
 		get_move_stack_a(stack, next_bigger, &best);
 	else

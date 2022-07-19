@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_stack.c                                        :+:      :+:    :+:   */
+/*   get_stack_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/05 17:24:14 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 22:48:08 by rvincent         ###   ########.fr       */
+/*   Created: 2022/07/17 22:26:00 by rvincent          #+#    #+#             */
+/*   Updated: 2022/07/17 22:49:59 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	lstadd_back(t_stack **lst, t_stack *new)
 {

@@ -6,13 +6,11 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 18:51:10 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 21:44:19 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:32:44 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include <stdio.h>
-#include <unistd.h>
+#include "push_swap_bonus.h"
 
 // get stack 1 2 3 4 || "1 2 3 4"
 
@@ -83,7 +81,7 @@ int	main(int argc, char **argv)
 	{
 		if (check_move(line))
 		{
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			return (1);
 		}
 		do_op_checker(&stack_a, &stack_b, line);

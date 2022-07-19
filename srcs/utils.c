@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 18:36:35 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 18:38:33 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/17 22:52:41 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,11 @@ int	is_sorted(t_stack *stack_a)
 	return (1);
 }
 
-void push_stack_b_to_stack_a(t_stack **stack_a, t_stack **stack_b)
+void	push_stack_b_to_stack_a(t_stack **stack_a, t_stack **stack_b)
 {
 	while (get_stack_size(*stack_b) != 0)
 	{
 		pa(stack_a, stack_b);
 		ft_printf("pa\n");
 	}
-}
-
-void	tester(t_stack *stack_a)
-{
-	int	previous;
-	int	i;
-
-	previous = -2147483648;
-	i = 0;
-	while (stack_a)
-	{
-		if (stack_a->content < previous)
-			printf("%d IS BIGGER THAN %d ERROR\n", previous, stack_a->content);
-		i++;
-		previous = stack_a->content;
-		stack_a = stack_a->next;
-	}
-	printf("SIZE=%d\n", i);
 }

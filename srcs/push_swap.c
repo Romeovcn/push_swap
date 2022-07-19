@@ -6,14 +6,11 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:52:19 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 19:25:19 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 20:05:33 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// TO DO
-// NORMINETTE
 
 int	main(int argc, char **argv)
 {
@@ -35,13 +32,11 @@ int	main(int argc, char **argv)
 		else if (data.size == 2)
 			sort_small_stack(&stack_a, &stack_b);
 	}
-	// tester(stack_a);
-	// printf("---------------------------------------------\n");
-	// print_list(stack_a);
-	// printf("---------------------------------------------\n");
-	// print_list(stack_b);
-	// printf("---------------------------------------------\n");
-	// print_list(data.sorted_int);
 	clear_list(&stack_a);
 	clear_list(&data.sorted_int);
 }
+
+	//ft_printf("---------------------------------------------\n");
+	//print_list(stack_a);
+	//ft_printf("---------------------------------------------\n");
+	//print_list(stack_b);

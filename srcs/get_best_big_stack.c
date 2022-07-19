@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_best.c                                         :+:      :+:    :+:   */
+/*   get_best_big_stack.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:26:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 18:43:10 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:58:14 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,48 +41,6 @@ int	calculate_move_extract(t_stack *stack, int nbr, t_move *current)
 	return (position);
 }
 
-int	find_first_smallest(t_stack *stack, int nbr)
-{
-	int	next_smallest;
-
-	next_smallest = nbr;
-	while (stack)
-	{
-		if (stack->content < nbr)
-		{
-			next_smallest = stack->content;
-			break ;
-		}
-		stack = stack->next;
-	}
-	return (next_smallest);
-}
-
-int	find_biggest(t_stack *stack, int nbr)
-{
-	int	biggest;
-
-	biggest = nbr;
-	while (stack)
-	{
-		if (stack->content > nbr && stack->content > biggest)
-			biggest = stack->content;
-		stack = stack->next;
-	}
-	return (biggest);
-}
-
-int	find_next_smallest(t_stack *stack, int smallest, int nbr)
-{
-	while (stack)
-	{
-		if (stack->content < nbr && stack->content > smallest)
-			smallest = stack->content;
-		stack = stack->next;
-	}
-	return (smallest);
-}
-
 int	get_move(t_stack *stack, int nbr, t_move *current)
 {
 	int	position;
@@ -104,19 +62,38 @@ int	get_move(t_stack *stack, int nbr, t_move *current)
 	return (position);
 }
 
+int	find_smallest(t_stack *stack, int nbr)
+{
+	int		smallest;
+	t_stack	*head;
+
+	smallest = nbr;
+	head = stack;
+	while (stack && smallest == nbr)
+	{
+		if (stack->content < smallest)
+			smallest = stack->content;
+		stack = stack->next;
+	}
+	while (head)
+	{
+		if (head->content > smallest && head->content < nbr)
+			smallest = head->content;
+		head = head->next;
+	}
+	return (smallest);
+}
+
 int	calculate_move_insert(t_stack *stack, int nbr, t_move *current)
 {
 	int	smallest;
 	int	biggest;
 	int	move;
 
-	smallest = find_first_smallest(stack, nbr);
-	biggest = find_biggest(stack, nbr);
+	smallest = find_smallest(stack, nbr);
+	biggest = get_biggest(stack);
 	if (smallest != nbr)
-	{
-		smallest = find_next_smallest(stack, smallest, nbr);
 		move = get_move(stack, smallest, current);
-	}
 	else
 		move = get_move(stack, biggest, current);
 	return (move);
@@ -129,12 +106,11 @@ t_move	calculate_move_total(t_stack *stack_a, t_stack *stack_b, t_data data)
 	t_move	best;
 
 	head = stack_a;
-	init_struct(&best);
+	init_struct(&best, 0);
 	best.rra = 2147483647;
 	while (stack_a)
 	{
-		init_struct(&current);
-		current.nbr = stack_a->content;
+		init_struct(&current, stack_a->content);
 		calculate_move_extract(head, stack_a->content, &current);
 		calculate_move_insert(stack_b, stack_a->content, &current);
 		reverse_check(&current);

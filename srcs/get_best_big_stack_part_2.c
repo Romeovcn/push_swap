@@ -6,14 +6,15 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 18:41:05 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 18:51:41 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:39:54 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_struct(t_move *current)
+void	init_struct(t_move *current, int nbr)
 {
+	current->nbr = nbr;
 	current->rra = 0;
 	current->ra = 0;
 	current->rrr = 0;
