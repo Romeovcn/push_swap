@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 16:20:08 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 18:58:26 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:37:20 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sort_in_stack_b(t_stack **stack_a, t_stack **stack_b, t_data *data,
 	}
 }
 
-void	sort_stack_a(t_stack **stack_a, t_stack **stack_b, t_data *data)
+void	sort_stack_a(t_stack **stack_a, t_data *data)
 {
 	if ((*stack_a)->content == data->biggest)
 	{
@@ -73,6 +73,6 @@ void	sort_medium_stack(t_stack **stack_a, t_stack **stack_b, t_data *data,
 		t_move *best)
 {
 	sort_in_stack_b(stack_a, stack_b, data, best);
-	sort_stack_a(stack_a, stack_b, data);
+	sort_stack_a(stack_a, data);
 	push_back_stack_a(stack_a, stack_b);
 }

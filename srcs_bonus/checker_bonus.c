@@ -6,13 +6,11 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 18:51:10 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 19:32:44 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:55:19 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-
-// get stack 1 2 3 4 || "1 2 3 4"
 
 int	check_matching_str(char *str, char *str_to_find)
 {
@@ -66,6 +64,13 @@ void	do_op_checker(t_stack **stack_a, t_stack **stack_b, char *line)
 		pb(stack_a, stack_b);
 }
 
+void free_and_exit(t_stack	**stack_a, t_stack	**stack_b, char *line)
+{
+	clear_list(stack_a);
+	clear_list(stack_b);
+	free(line);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
@@ -82,15 +87,16 @@ int	main(int argc, char **argv)
 		if (check_move(line))
 		{
 			write(2, "Error\n", 6);
+			free_and_exit(&stack_a, &stack_b, line);
 			return (1);
 		}
 		do_op_checker(&stack_a, &stack_b, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	if (is_sorted(stack_a))
 		ft_printf("OK\n");
 	else
 		ft_printf("KO\n");
-	clear_list(&stack_a);
-	free(line);
+	free_and_exit(&stack_a, &stack_b, line);
 }

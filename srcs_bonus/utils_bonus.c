@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 22:25:56 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 17:33:24 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:31:51 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ void	clear_list(t_stack **stact_stack)
 		free(*stact_stack);
 		*stact_stack = tmp;
 	}
+}
+
+void	print_list(t_stack *stack)
+{
+	while (stack)
+	{
+		ft_printf("%d ", stack->content);
+		stack = stack->next;
+	}
+	ft_printf("\n");
 }

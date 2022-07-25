@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:46:20 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 22:25:47 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:10:23 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	sa(t_stack *stack_a)
 {
 	int	tmp;
 
-	if (!stack_a)
+	if (!stack_a || !stack_a->next)
 		return ;
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;

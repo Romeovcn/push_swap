@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:52:19 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 20:05:33 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:37:55 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		else if (data.size <= 100 && data.size > 2)
 			sort_medium_stack(&stack_a, &stack_b, &data, &best);
 		else if (data.size == 2)
-			sort_small_stack(&stack_a, &stack_b);
+			sort_small_stack(&stack_a);
 	}
 	clear_list(&stack_a);
 	clear_list(&data.sorted_int);

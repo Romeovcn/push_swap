@@ -48,7 +48,7 @@ CFLAGS	= -Wall -Werror -Wextra
 
 ${NAME}:	${OBJSDIR} ${OBJS} ${HEADERS}
 	@make -C ./libft
-	@${CC} ${OBJS} ${LIB} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
 	@echo "Push_swap compiled !"
 	@echo ----------------------------
 
@@ -58,10 +58,10 @@ $(OBJSDIR):
 	@mkdir ${OBJSDIR}
 
 ${OBJSDIR}/%.o: ${SRCSDIR}/%.c
-	@${CC} -I. -c $< -o $@
+	@${CC} ${CFLAGS} -I. -c $< -o $@
 
 ${OBJSDIR}/%.o: ${SRCSBONUSDIR}/%.c
-	@${CC} -I. -c $< -o $@
+	@${CC} ${CFLAGS} -I. -c $< -o $@
 
 clean:
 	@make clean -C ./libft

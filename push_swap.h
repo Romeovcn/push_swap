@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/19 20:14:20 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:37:00 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void					sort_medium_stack(t_stack **stack_a, t_stack **stack_b,
 							t_data *data, t_move *best);
 
 // Sort small stack
-void					sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+void					sort_small_stack(t_stack **stack_a);
 
 // Check error
 int						check_duplicate(t_stack *stack, long nbr);

@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 22:19:42 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/17 22:30:02 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 17:57:02 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int						get_stack_size(t_stack *stack);
 
 int						is_sorted(t_stack *stack_a);
 void					clear_list(t_stack **stact_stack);
+void					print_list(t_stack *stack);
 
 int						check_duplicate(t_stack *stack, long nbr);
 int						check_digit_error(char *nbr);
