@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:24:14 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 20:57:11 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:16:38 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,17 @@ t_stack	*get_2_args_stack(char *stack_str)
 	while (stack_array[i])
 	{
 		nbr = ft_atoi(stack_array[i]);
-		check_error(result, nbr, stack_array[i]);
+		if (check_error(result, nbr, stack_array[i]))
+		{
+			while (stack_array[i])
+				free(stack_array[i++]);
+			free(stack_array);
+			exit(0);
+		}
 		lstadd_back(&result, lstnew(nbr));
+		free(stack_array[i]);
 		i++;
 	}
-	i = 0;
-	while (stack_array[i])
-		free(stack_array[i++]);
 	free(stack_array);
 	return (result);
 }
@@ -74,7 +78,8 @@ t_stack	*get_multiple_args_stack(char **argv)
 	while (argv[i])
 	{
 		nbr = ft_atoi(argv[i]);
-		check_error(result, nbr, argv[i]);
+		if (check_error(result, nbr, argv[i]))
+			exit(0);
 		lstadd_back(&result, lstnew(nbr));
 		i++;
 	}

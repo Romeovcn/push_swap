@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:52:19 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 19:37:55 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:57:49 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 			sort_small_stack(&stack_a);
 	}
 	clear_list(&stack_a);
+	clear_list(&stack_b);
 	clear_list(&data.sorted_int);
 }
 

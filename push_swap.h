@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/26 18:39:56 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:17:16 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,6 @@ void					sort_small_stack(t_stack **stack_a);
 // Check error
 int						check_duplicate(t_stack *stack, long nbr);
 int						check_digit_error(char *nbr);
-void					check_error(t_stack *stack, long nbr, char *argv);
+int						check_error(t_stack *stack, long nbr, char *argv);
 
 #endif

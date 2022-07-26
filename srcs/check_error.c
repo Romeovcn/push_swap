@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:08:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 20:33:33 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:02:46 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	check_digit_error(char *nbr)
 	return (0);
 }
 
-void	check_error(t_stack *stack, long nbr, char *argv)
+int	check_error(t_stack *stack, long nbr, char *argv)
 {
 	if (check_max_int(argv, nbr) || check_duplicate(stack, nbr)
 		|| check_digit_error(argv) || ft_strlen(argv) == 0)
 	{
 		write(2, "Error\n", 6);
 		clear_list(&stack);
-		exit(0);
+		return (1);
 	}
-	return ;
+	return (0);
 }

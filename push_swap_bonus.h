@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 22:19:42 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/26 18:39:51 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:21:23 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void					print_list(t_stack *stack);
 
 int						check_duplicate(t_stack *stack, long nbr);
 int						check_digit_error(char *nbr);
-void					check_error(t_stack *stack, long nbr, char *argv);
+int						check_error(t_stack *stack, long nbr, char *argv);
 
 #endif
