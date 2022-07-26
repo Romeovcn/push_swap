@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 21:08:43 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/11 18:50:28 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:33:33 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_error(t_stack *stack, long nbr, char *argv)
 	if (check_max_int(argv, nbr) || check_duplicate(stack, nbr)
 		|| check_digit_error(argv) || ft_strlen(argv) == 0)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		clear_list(&stack);
 		exit(0);
 	}

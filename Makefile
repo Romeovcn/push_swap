@@ -1,8 +1,8 @@
-SRCSDIR	= srcs
+SRCS_DIR	= srcs
 
-OBJSDIR	= objs
+OBJS_DIR	= objs
 
-SRCSBONUSDIR	= srcs_bonus
+SRCSBONUS_DIR	= srcs_bonus
 
 SRCS	=	push_swap.c \
 			get_stack.c \
@@ -30,11 +30,13 @@ SRCS_BONUS	=	checker_bonus.c \
 
 LIB		= ./libft/libft.a
 
-OBJS	= ${patsubst %.c,${OBJSDIR}/%.o,${SRCS}}
+OBJS	= ${patsubst %.c,${OBJS_DIR}/%.o,${SRCS}}
 
-OBJS_BONUS	= ${patsubst %.c,${OBJSDIR}/%.o,${SRCS_BONUS}}
+OBJS_BONUS	= ${patsubst %.c,${OBJS_DIR}/%.o,${SRCS_BONUS}}
 
 HEADERS	= push_swap.h
+
+HEADERS_BONUS	= push_swap_bonus.h
 
 NAME	= push_swap
 
@@ -46,7 +48,7 @@ CFLAGS	= -Wall -Werror -Wextra
 
 # -- RULES -- #
 
-${NAME}:	${OBJSDIR} ${OBJS} ${HEADERS}
+${NAME}:	${OBJS_DIR} ${OBJS} ${HEADERS}
 	@make -C ./libft
 	@${CC} ${CFLAGS} ${OBJS} ${LIB} -o ${NAME}
 	@echo "Push_swap compiled !"
@@ -54,18 +56,18 @@ ${NAME}:	${OBJSDIR} ${OBJS} ${HEADERS}
 
 all:	${NAME}
 
-$(OBJSDIR):
-	@mkdir ${OBJSDIR}
+$(OBJS_DIR):
+	@mkdir ${OBJS_DIR}
 
-${OBJSDIR}/%.o: ${SRCSDIR}/%.c
+${OBJS_DIR}/%.o: ${SRCS_DIR}/%.c
 	@${CC} ${CFLAGS} -I. -c $< -o $@
 
-${OBJSDIR}/%.o: ${SRCSBONUSDIR}/%.c
+${OBJS_DIR}/%.o: ${SRCSBONUS_DIR}/%.c
 	@${CC} ${CFLAGS} -I. -c $< -o $@
 
 clean:
 	@make clean -C ./libft
-	@rm -rf ${OBJSDIR}
+	@rm -rf ${OBJS_DIR}
 
 fclean:	clean
 	@make fclean -C ./libft
@@ -73,7 +75,7 @@ fclean:	clean
 
 re: fclean all
 
-bonus: all ${OBJS_BONUS}
+bonus: all ${OBJS_BONUS} ${HEADERS_BONUS}
 	@${CC} ${CFLAGS} ${OBJS_BONUS} ${LIB} -o ${NAME_BONUS}
 
 .PHONY:	all clean fclean re

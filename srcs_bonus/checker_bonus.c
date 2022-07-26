@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 18:51:10 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 19:55:19 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:59:52 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ void	do_op_checker(t_stack **stack_a, t_stack **stack_b, char *line)
 		pb(stack_a, stack_b);
 }
 
-void free_and_exit(t_stack	**stack_a, t_stack	**stack_b, char *line)
+void	free_and_exit(t_stack	**stack_a, t_stack	**stack_b, char *line)
 {
 	clear_list(stack_a);
 	clear_list(stack_b);
 	free(line);
+	exit (0);
 }
 
 int	main(int argc, char **argv)
@@ -88,7 +89,6 @@ int	main(int argc, char **argv)
 		{
 			write(2, "Error\n", 6);
 			free_and_exit(&stack_a, &stack_b, line);
-			return (1);
 		}
 		do_op_checker(&stack_a, &stack_b, line);
 		free(line);

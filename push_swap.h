@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:29:09 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 19:37:00 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:39:56 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ int						get_biggest(t_stack *stack);
 int						get_next_biggest(t_stack *stack, int biggest);
 void					get_data(t_stack *stack_a, t_data *data);
 int						check_is_reverse_better(t_stack *stack, int nbr);
-void					tester(t_stack *stack_a);
 int						is_sorted(t_stack *stack_a);
 void					push_stack_b_to_stack_a(t_stack **stack_a,
 							t_stack **stack_b);
