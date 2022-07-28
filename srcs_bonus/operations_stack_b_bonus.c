@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:46:33 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 19:13:07 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:30:09 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	rb(t_stack **stack_b)
 	t_stack	*tmp;
 	t_stack	*head;
 
-	if (!*stack_b)
+	if (!*stack_b || !(*stack_b)->next)
 		return ;
 	head = *stack_b;
 	tmp = *stack_b;
@@ -45,7 +45,7 @@ void	rrb(t_stack **stack_b)
 	t_stack	*tmp;
 	t_stack	*head;
 
-	if (!*stack_b)
+	if (!*stack_b || !(*stack_b)->next)
 		return ;
 	head = *stack_b;
 	while (head->next->next)

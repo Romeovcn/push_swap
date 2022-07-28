@@ -6,7 +6,7 @@
 /*   By: rvincent <rvincent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:46:20 by rvincent          #+#    #+#             */
-/*   Updated: 2022/07/25 19:10:23 by rvincent         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:30:13 by rvincent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ra(t_stack **stack_a)
 	t_stack	*tmp;
 	t_stack	*head;
 
-	if (!*stack_a)
+	if (!*stack_a || !(*stack_a)->next)
 		return ;
 	head = *stack_a;
 	tmp = *stack_a;
@@ -45,7 +45,7 @@ void	rra(t_stack **stack_a)
 	t_stack	*tmp;
 	t_stack	*head;
 
-	if (!*stack_a)
+	if (!*stack_a || !(*stack_a)->next)
 		return ;
 	head = *stack_a;
 	while (head->next->next)
